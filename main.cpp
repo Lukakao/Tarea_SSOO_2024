@@ -2,7 +2,6 @@
 #include <thread>
 #include <random>
 #include <chrono>
-#include <array>
 #include <vector>
 #include <mutex>
 using namespace std;
@@ -12,9 +11,8 @@ mt19937 rng(dev());
 uniform_int_distribution<mt19937::result_type> metros_avance(1,10);
 uniform_int_distribution<mt19937::result_type> ms_espera(100,500);
 
-const int cantidad_autos = 5;
-const int distancia_carrera = 100;
-
+int cantidad_autos = 0;
+int distancia_carrera = 0;
 int lugar = 1;
 vector<string> lugares;
 mutex mtx;
@@ -50,12 +48,35 @@ void avanzar(string nombre_auto){
 }
 
 int main(int argc, char **argv){
-    array<thread, cantidad_autos> hilos;
+    //validacion de argumentos
+    if (argc < 3) {
+        cerr << "Uso: " << argv[0] << " <distancia_carrera> <cantidad_autos>" << endl;
+        return 1;
+    }   
+    try {
+        // convertir string en int
+        distancia_carrera = stoi(argv[1]); 
+        cantidad_autos = stoi(argv[2]);
+        cout << distancia_carrera << "  " << cantidad_autos << endl;
+    } catch (const invalid_argument& e) {
+        cerr << "Argumento invalido: No es un numero Entero." << endl;
+        return 1;
+    }
+    if(distancia_carrera<10){
+        cerr << "La distancia de carrera tiene que ser mayor de 10 metros" << endl;
+        return 1;
+    }
+    if(cantidad_autos < 0 && cantidad_autos < 100 ){
+        cerr << "La cantidad de autos tiene que ser mayor a 0 y menor a 100" << endl;
+        return 1;
+    }
+    
     cout << "Carrera de " << distancia_carrera << " mts. Con " << cantidad_autos << " autos." << endl;
+    vector<thread> hilos;
     for (size_t i = 0; i < cantidad_autos; i++)
     {   
         string nombre_auto = "Auto" + to_string(i+1);
-        hilos[i] = thread(avanzar, nombre_auto);
+        hilos.emplace_back(avanzar, nombre_auto);
     }
 
     for (int j = 0; j < cantidad_autos; j++) {

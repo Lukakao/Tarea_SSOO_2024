@@ -2,6 +2,10 @@
     "files.associations": {
         "thread": "cpp",
         "random": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "array": "cpp",
+        "stdexcept": "cpp",
+        "ostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
