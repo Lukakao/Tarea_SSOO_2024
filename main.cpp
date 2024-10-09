@@ -63,8 +63,8 @@ int main(int argc, char **argv){
         cerr << "Argumento invalido: No es un numero Entero." << endl;
         return 1;
     }
-    if(distancia_carrera<10){
-        cerr << "La distancia de carrera tiene que ser mayor de 10 metros" << endl;
+    if(distancia_carrera<10 && distancia_carrera > 100000){
+        cerr << "La distancia de carrera tiene que ser mayor de 10 metros y menor de 100000 metros" << endl;
         return 1;
     }
     if(cantidad_autos < 0 && cantidad_autos < 100 ){
