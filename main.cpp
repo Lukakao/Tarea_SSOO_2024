@@ -57,7 +57,6 @@ int main(int argc, char **argv){
         // convertir string en int
         distancia_carrera = stoi(argv[1]); 
         cantidad_autos = stoi(argv[2]);
-        cout << distancia_carrera << "  " << cantidad_autos << endl;
     } catch (const invalid_argument& e) {
         cerr << "Argumento invalido: No es un numero Entero." << endl;
         return 1;
