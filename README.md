@@ -6,4 +6,4 @@
 
 
 
-## Integrantes: Lukas Sanhueza SOlar, Deivid 
+## Integrantes: Lukas Sanhueza Solar, Deivid 
