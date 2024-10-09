@@ -10,6 +10,8 @@
 #### Ejemplo:
 ``./main 100 5``
 
+## Htop mostrando las hebras correctamente
+![Htop](https://github.com/Lukakao/Tarea_SSOO_2024/blob/416268bb5531383949125dc4b1c80b53ea9a105a/htop.png)
 
 
 
