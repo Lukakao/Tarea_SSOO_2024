@@ -14,7 +14,7 @@ uniform_int_distribution<mt19937::result_type> ms_espera(100,500);
 int cantidad_autos = 0;
 int distancia_carrera = 0;
 int lugar = 1;
-vector<string> lugares;
+vector<string> resultados;
 mutex mtx;
 
 void avanzar(string nombre_auto){
@@ -41,7 +41,7 @@ void avanzar(string nombre_auto){
         // proteger las variables de ser accedidas por varias threads
         lock_guard<mutex> lock(mtx);
         cout << nombre_auto << ": Termina en " <<  lugar << "° Lugar" << endl;
-        lugares.push_back(nombre_auto);
+        resultados.push_back(nombre_auto);
         lugar +=1;
     }
     
@@ -81,9 +81,9 @@ int main(int argc, char **argv){
     for (int j = 0; j < cantidad_autos; j++) {
         hilos[j].join();
     }
-    cout << endl << "-------------------Termino de la carrera---------------------" << endl;
-    for (size_t i = 0; i < lugares.size(); i++) {
-        cout << (i+1) << "°: " << lugares[i] << endl; 
+    cout << endl << "-------------------Termino de la carrera---------------------" << endl << endl;
+    for (size_t i = 0; i < resultados.size(); i++) {
+        cout << (i+1) << "°: " << resultados[i] << endl; 
     }
     return 0;
 }
